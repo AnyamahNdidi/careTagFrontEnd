@@ -1,0 +1,23 @@
+[
+  {
+    "id":1,
+    "-":"1st installmental payment",
+    "installmental payment":"150,000",
+    "other payment":"30,000",
+    "total":"180, 000"
+  },
+  {
+    "id":2,
+    "-":"2st installmental payment",
+    "installmental payment":"130,000",
+    "other payment":"30,000",
+    "total":"160, 000"
+  },
+  {
+    "id":3,
+    "-":"3st installmental payment",
+    "installmental payment":"130,000",
+    "other payment":"30,000",
+    "total":"160, 000"
+  }
+]
