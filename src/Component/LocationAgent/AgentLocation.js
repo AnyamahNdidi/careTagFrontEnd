@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import {AppBar, Toolbar, Tabs, Tab,Typography,useMediaQuery, useTheme, Box,Button} from "@mui/material"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import GlobalButton from "../Theme/GlobalButton"
@@ -7,6 +7,10 @@ import pic from "./1.png"
 import axios from "axios"
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import { UserContext } from "../GlobalContex/Globastate"
+import Loading from "../Auth/Loading"
+import Swal from "sweetalert2";
+import {useNavigate} from "react-router-dom"
 
 
 
@@ -169,21 +173,72 @@ const useStyles = makeStyles((theme)=>({
 }))
 
 function AgentLocation() {
-    const classes = useStyles()
-    const [currency, setCurrency] = React.useState('EUR');
+  const classes = useStyles()
+   const myNavigation = useNavigate()
+    const [dataSearch, setDataSearch] = React.useState("")
     const [data, setData] = React.useState([])
+    const [loading, setLoading] = React.useState(false);
+  
+   const { user, setSelectedChat, chat, setChat,
+        toggle,  overViewButton,allButton,addBtton,activeButton,customerButton,holdOrganization, setHoldOrganization } = useContext(UserContext)
 
    
 
-  const handleChange = (event) => {
-    setCurrency(event.target.value);
-    };
+ 
+  
+  const submit = async () =>
+  {
+     setLoading(true)
+    try
+    {
+      await axios.get(`https://caretagback.herokuapp.com/api/admin/all/orginazation/search?search=${dataSearch}`).then((result) =>
+      {
+        console.log(result?.data)
+        setHoldOrganization(result?.data[0]?.agent)
+        console.log("na the data i won map", holdOrganization)
+         setLoading(false);
+              
+                    
+           myNavigation("/mapshow")
+                  
+                
+      }).catch((err) =>
+      {
+          setLoading(true);
+                if (err.response.status === 401) {
+                    setLoading(false);
+                    Swal.fire({
+                        title: err.response.data.message,
+                        text: "",
+                        icon: "error",
+                        button: "ok",
+                    })
+                   
+					
+                } else
+                {
+                    setLoading(false);
+                    Swal.fire({
+                        title: "Something went wrong",
+                        text: "Check your internet connection",
+                        icon: "error",
+                        button: "ok",
+                    })
+                   
+                }
+        console.log("opps function not working", err)
+      })
+    } catch (error)
+    {
+      console.log("error in performing function something went wrong", error)
+    }
+  }
     
     const getData = async () =>
     {
         try
         {
-            await axios.get("http://localhost:2001/api/admin/all/orginazation/get").then((result) =>
+            await axios.get("https://caretagback.herokuapp.com/api/admin/all/orginazation/get").then((result) =>
             {
                 setData(result?.data?.data)
                 console.log("all company", data)
@@ -213,8 +268,8 @@ function AgentLocation() {
           select
           label="Select Organization"
           
-          value={currency}
-          onChange={handleChange}
+          value={dataSearch}
+          onChange={(e)=> setDataSearch(e.target.value) }
           className="selectionCon"
           SelectProps={{
             native: true,
@@ -231,7 +286,11 @@ function AgentLocation() {
                           </Box>
                       
                      <Box className='dbutton'>
-                          <Button className='myButton'>
+              <Button className='myButton' onClick={() =>
+              {
+                console.log(dataSearch)
+                submit()
+                          }}>
                               <Typography> Browse</Typography>
                           </Button>
                 </Box>
@@ -241,7 +300,8 @@ function AgentLocation() {
             <Box className='box2'>
                 <Box className='box2Image'><img src={pic} style={{width:"100%", height:"100%", objectFit:"contain"}}/></Box>
             </Box>
-        </Box>
+      </Box>
+      {loading ? <Loading loading={loading} /> : null}
     </Box>
   )
 }

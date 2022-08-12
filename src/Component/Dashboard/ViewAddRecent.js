@@ -405,7 +405,7 @@ function ViewAddRecent ()
             </Box>   
             <Box className="dloginCon">
               <Box className='emailCon'><Typography>Location : </Typography></Box>
-                  <Box className=''><Typography>{props.location }</Typography></Box>
+                  <Box className=''><Typography>{props.dlocation }</Typography></Box>
               
             </Box>   
             

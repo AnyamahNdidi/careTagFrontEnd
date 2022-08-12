@@ -13,7 +13,11 @@ export const UseProvider = ({children})=>{
   const [allAgent, setAllAgent] = useState(false)
   const [addAgent, setAddAgent] = useState(false)
   const [active, setActive] = useState(false)
-  const [customer, setCustomer] = useState(false)
+   const [customer, setCustomer] = useState(false)
+
+   const [holdOrganization, setHoldOrganization] = useState("")
+   
+   
 
   const handleToggle = () =>{
       setToggle(!toggle)
@@ -66,7 +70,7 @@ export const UseProvider = ({children})=>{
     <UserContext.Provider value={{
       user, setUser, selectedChat, setSelectedChat, chat, setChat, toggle, setToggle, handleToggle,
       overView, setOverView, allAgent, setAllAgent, addAgent, setAddAgent, active, setActive, customer, setCustomer,
-      overViewButton,allButton,addBtton,activeButton,customerButton
+      overViewButton,allButton,addBtton,activeButton,customerButton,holdOrganization, setHoldOrganization
     }}>
     {children}
     </UserContext.Provider>
