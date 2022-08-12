@@ -1,0 +1,20 @@
+[
+{
+    "id": 1,
+    "name": "krikri road",
+    "latitude": 6.4482917,
+    "longitude": 3.3290513
+},
+{
+    "id": 2,
+    "name": "Bushwick",
+    "latitude": 6.4414788,
+    "longitude": 3.3739386
+},
+{
+    "id": 3,
+    "name": "East New York",
+    "latitude": 6.4489422,
+    "longitude": 3.3463271
+}
+]

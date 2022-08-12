@@ -197,7 +197,7 @@ const useStyles = makeStyles((theme)=>({
 function AddAgent ()
 {
 
-  const [location, setLocations] = React.useState("")
+  const [dlocation, setdlocation] = React.useState("")
   const hist = useNavigate();
   const [loading, setLoading] = React.useState(false);
    const { user, setSelectedChat, chat, setChat,
@@ -224,8 +224,8 @@ function AddAgent ()
             console.log(value)
              setLoading(true)
               const { agentName, organizationCode, password } = value
-              console.log(location)
-              await axios.post("https://caretagback.herokuapp.com/api/agent/regagent", { agentName, organizationCode, password,location })
+              console.log(dlocation)
+              await axios.post("https://caretagback.herokuapp.com/api/agent/regagent", { agentName, organizationCode, password, dlocation })
               .then((response)=>{
                 setLoading(false);
                 Swal.fire({
@@ -340,7 +340,7 @@ function AddAgent ()
 											apiKey='AIzaSyBIe8lcH1rTX_sBfYeopfTGOjudCxQoPGo'
 											onPlaceSelected={(place) => {
 												console.log("hdshhfjjdf", place?.formatted_address);
-                                                setLocations(place?.formatted_address);
+                                                setdlocation(place?.formatted_address);
                                                 
 											}}
 										/>

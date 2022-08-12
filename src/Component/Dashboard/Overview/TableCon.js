@@ -239,7 +239,7 @@ export default function TableCon ()
                </div>
              </td>
              <td>
-                   <div style={{ display: "flex", width: "100px", color: "#223862", fontWeight: "500" }}>{ props.location}</div>
+                   <div style={{ display: "flex", width: "100px", color: "#223862", fontWeight: "500" }}>{ props.dlocation}</div>
              </td>
 
                  <td>  <div style={{ display: "flex", color: "#223862", fontWeight: "500" }}>{ props.email}</div></td>

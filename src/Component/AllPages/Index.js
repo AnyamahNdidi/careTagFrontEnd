@@ -8,6 +8,7 @@ import Dashboard from "../Dashboard/Index"
 import Sort from "../Sort/Sort"
 import HeaderDash from "../Dashboard/HeaderDash"
 import AgentLogin from "../Auth/AgentLogin"
+import Locationmap from "../LocationAgent/Locationmap"
 
 
 
@@ -21,7 +22,8 @@ export {
     Sort,
     HeaderDash,
     LoginAs,
-    AgentLogin
+    AgentLogin,
+    Locationmap
 
     
 }
